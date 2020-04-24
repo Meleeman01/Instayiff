@@ -1,0 +1,11 @@
+
+# Created by https://www.gitignore.io/api/laravel
+# Edit at https://www.gitignore.io/?templates=laravel
+
+### Laravel ###
+/Instayiff/vendor/
+/Instayiff/node_modules/
+/Instayiff/npm-debug.log
+/Instayiff/yarn-error.log
+
+# End of https://www.gitignore.io/api/larave

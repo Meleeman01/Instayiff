@@ -1,0 +1,19 @@
+{
+  "name": "instayiff",
+  "version": "1.0.0",
+  "description": "a site to create your own yiffable fursona",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Meleeman01/Instayiff.git"
+  },
+  "author": "Meleeman01",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Meleeman01/Instayiff/issues"
+  },
+  "homepage": "https://github.com/Meleeman01/Instayiff#readme"
+}
