@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Hello Adonis</title>
-  {{ style('style') }}
+  {{ style('dist/main') }}
 </head>
 <body>
   <section>
@@ -14,7 +14,9 @@
       <p>
         Don't know where to start? Read the <a href="https://adonisjs.com/docs">documentation</a>.
       </p>
+      <div id="root"></div>
     </div>
   </section>
+  <script src="dist/app.js"></script>
 </body>
 </html>

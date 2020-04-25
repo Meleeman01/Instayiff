@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/Meleeman01/Instayiff/issues"
   },
-  "homepage": "https://github.com/Meleeman01/Instayiff#readme"
+  "homepage": "https://github.com/Meleeman01/Instayiff#readme",
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
 }

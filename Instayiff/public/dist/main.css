@@ -1,0 +1,15 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:300);html {
+  background-color: whitesmoke;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  background-color: whitesmoke;
+}
+
+section {
+  display: flex;
+  background-color: white;
+}
+

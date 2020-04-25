@@ -11,8 +11,8 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/dist/')
-   .sass('resources/sass/app.scss', 'public/dist/')
+mix.react('resources/js/app.js', 'public/dist/')
+   .sass('resources/sass/main.scss', 'public/dist/')
    .copy('node_modules/bulma/css/bulma.min.css', 'public/dist/');
 // Full API
 // mix.js(src, output);
