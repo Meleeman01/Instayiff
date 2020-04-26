@@ -12,8 +12,8 @@ let mix = require('laravel-mix');
  */
 
 mix.react('resources/js/app.js', 'public/dist/')
-   .sass('resources/sass/main.scss', 'public/dist/')
-   .copy('node_modules/bulma/css/bulma.min.css', 'public/dist/');
+    .sass('resources/sass/main.scss', 'public/dist/');
+    //.copy('node_modules/bulma/css/bulma.min.css', 'public/dist/',false);
 // Full API
 // mix.js(src, output);
 // mix.react(src, output); <-- Identical to mix.js(), but registers React Babel compilation.
