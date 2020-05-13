@@ -7,11 +7,25 @@ body {
   font-weight: 300;
   background-color: whitesmoke;
   margin: 3em 0;
+  display: flex;
+  justify-content: center;
 }
 
 section {
   height: 400px;
   display: flex;
   background-color: white;
+}
+
+.app-style {
+  border-radius: 3px;
+  border: solid black 2px;
+  margin: 0 auto;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
