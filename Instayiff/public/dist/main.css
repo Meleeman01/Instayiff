@@ -109,6 +109,8 @@ html {
 
 body {
   background-image: url(/background1.jpg);
+  font-family: "jollygood";
+  color: #242423ff;
   background-size: cover;
   background-repeat: no-repeat;
 }
