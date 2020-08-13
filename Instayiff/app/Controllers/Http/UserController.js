@@ -1,20 +1,20 @@
 'use strict';
 
+const User = use('App/Models/User')
+const { validateAll } = use('Validator')
+
 class UserController {
 
     loginPage ({auth, request, view}) {
-
-        if (auth.check()) {
-            return view.render('loginregister');
-        }
-        else {
-            console.log('lol');
-            return view.render('feed');
-        }
+        
+        return view.render('loginregister');
+    
+        
     }
 
-    async login ({ auth, request }) {
+    async login ({ auth, request, view, session }) {
         const { email, password } = request.all();
+
         await auth.attempt(email, password);
 
         return 'Logged in successfully';
@@ -27,7 +27,40 @@ class UserController {
         return auth.user;
     }
 
-    register () {
+    async register ({auth,request, session, response}) {
+        const data = request.only(['username', 'email', 'password', 'password_confirmation']);
+        const validation = await validateAll(data, {
+            username: 'required|unique:users',
+            email: 'required|email|unique:users',
+            password: 'required',
+            password_confirmation: 'required_if:password|same:password',
+        });
+        /**
+     * If validation fails, early returns with validation message.
+     */
+        if (validation.fails()) {
+            session
+                .withErrors(validation.messages())
+                .flashExcept(['password']);
+
+            return response.redirect('back');
+        }
+
+        // Deleting the confirmation field since we don't
+        // want to save it
+        delete data.password_confirmation;
+
+        /**
+     * Creating a new user into the database.
+     *
+     * ref: http://adonisjs.com/docs/4.1/lucid#_create
+     */
+        const user = await User.create(data);
+
+        // Authenticate the user
+        await auth.login(user);
+
+        return response.redirect('/');
 
     }
 

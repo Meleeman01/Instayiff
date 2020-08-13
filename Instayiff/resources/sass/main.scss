@@ -1,32 +1,105 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300');
+/*colors for applicaton*/
+$majorelle-blue: #6853dfff;
+$yellow-orange: #fa900fff;
+$floral-white: #fcf9edff;
+$eerie-black: #242423ff;
+
+@import '_flex';
+@import '_links';
+
+
+/*fonts for applicaton*/
+.font1{
+	font-family: "justanotherhand";
+	color: $eerie-black;
+}
+.font2{
+	font-family: "quitemagical";
+}
+.font3{
+	font-family: "cookiemonster";
+}
+.font4{
+	font-family: "hashbrowns";
+}
+.font5{
+	font-family: "jollygood";
+}
+.font6{
+	font-family: "full_neue";
+}
+
+.is-title {
+	color: $eerie-black;
+	//text-shadow: -1px -1px 0 $floral-white, 1px -1px 0 $floral-white, -1px 1px 0 $floral-white, 1px 1px 0 $floral-white;
+}
+
 
 html {
-	background-color: whitesmoke;
+  background-color: $floral-white;
+  font-family: "jollygood",'sans'
 }
 body {
-	font-family: 'Montserrat', sans-serif;
-  	font-weight: 300;
-  	background-color: whitesmoke;
-  	margin: 3em 0;
-  	display: flex;
-  	justify-content:center;
+background-image: url(/background1.jpg);
+
+background-size: cover;
+background-repeat: no-repeat;
 }
 
-section {
-	height: 400px;
-	display: flex;
-	background-color: white;
+ul{
+	padding: 0;
+}
+ul li {
+  display: inline;
+  padding: 1em;
 }
 
-.app-style{
-    border-radius: 3px;
-    border:solid black 2px;
-    margin: 0 auto;
+h1 {
+  font-family: "justanotherhand";
+  font-size: 5em;
+}
+h2 {
+  font-family: "quitemagical";
+  font-size: 3em
 }
 
-.flex {
-	display: flex;
-	align-items:center;
-	justify-content:space-between;
+
+footer {
+  background-color: #6853dfff;
+  padding: 2em;
+  font-size: 2em;
+}
+
+.login{
+  padding: 8em 0;
+}
+
+.yiff-button {
+	background-color: $yellow-orange;
+	margin-bottom: .5em;
+	color: white;
+}
+.yiff-button2 {
+	background-color: $majorelle-blue;
+	margin-bottom: .5em;
+	color: white;
+}
+
+.card {
+	background-color: $floral-white;
+	padding: 3em 2em;
+	border-radius: 25px;
+	max-width: 22em;
+	width: 20em;
+	box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
+}
+.container1 {
+	max-width: 22em;
+	width: 20em;
+}
+
+
+.show-border{
+	border: dashed pink 2px;
 }
 

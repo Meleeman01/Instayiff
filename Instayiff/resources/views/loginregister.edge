@@ -3,9 +3,79 @@
 <head>
   <meta charset="UTF-8" />
   <title>Instayiff</title>
+  {{style('dist/bulma.min.css')}}
+  {{ style('fonts') }}
   {{ style('dist/main') }}
+
 </head>
-<body>
-  <h1>Login/Register</h1>
+<body style="margin:0;">
+  <section class="section">
+      <div class="columns">
+        <div class="column is-6"></div>
+        <div class="column is-6 ">
+          
+            <h1 style="text-align: center;" class="is-title font3 ">Instayiff</h1>
+          
+          
+        </div>
+        
+      </div>
+
+      
+    
+      
+      
+
+    
+  </section>
+
+    
+  <section class="section">
+    <div class="columns">
+
+      <div class="column is-6">
+        
+      </div>
+
+      <div class="column is-6 ">
+        <div class="container card">
+          <div style="margin:1em;" class="flx wrap f-center f-middle f-flow-column">
+          <h2 class="is-title font1">Login/Register</h2>
+          <h3 class="is-subtitle font5">Instagram for furries!</h3>
+        </div>
+        <div class="flx wrap f-middle f-center f-flow-column">
+          <form class="flx wrap f-center f-middle field">
+            <label class="label">Username</label>
+            <input class="input" type="text" name="username">
+            <label class="label">Password</label>
+            <input class="input" type="password" name="password">
+          </form>
+          <button class="button yiff-button">I'm New</button>
+          <button class="button yiff-button2">login</button>
+          <a href="/forgot">I forgot my password!</a>
+          </div>
+        </div>
+        
+        
+      </div>
+
+      
+    </div>
+  </section>
+  <footer class="section font1">
+    <div class="columns is-vcentered">
+      <div class="column is-6">
+        <ul class="flx f-center f-middle wrap">
+        <li><a>About</a></li>
+        <li>Help</li>
+        <li>Privacy</li>
+      </ul>
+      </div>
+      
+      <div class="column is-6 "><div class="flx f-center f-middle wrap"><span>&copy; Meleeman 2020<span></div></div>
+    </div>
+    
+  </footer>  
+  
 </body>
 </html>
