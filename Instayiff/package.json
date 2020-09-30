@@ -6,11 +6,11 @@
   "main": "index.js",
   "scripts": {
     "assets-dev": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "assets-watch": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development webpack --watch --watch-poll --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "assets-watch": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development webpack --watch --watch-poll  --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "assets-hot": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
     "assets-production": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=production webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "server": "node server.js",
-    "test": "node ace test"
+    "test": "jest"
   },
   "keywords": [
     "adonisjs",
@@ -24,6 +24,7 @@
     "@adonisjs/auth": "^3.0.7",
     "@adonisjs/bodyparser": "^2.0.5",
     "@adonisjs/cors": "^1.0.7",
+    "@adonisjs/drive": "^1.0.4",
     "@adonisjs/fold": "^4.0.9",
     "@adonisjs/framework": "^5.0.9",
     "@adonisjs/ignitor": "^2.0.8",
@@ -32,8 +33,11 @@
     "@adonisjs/session": "^1.0.27",
     "@adonisjs/shield": "^1.0.8",
     "@adonisjs/validator": "^5.0.6",
-    "laravel-mix": "^5.0.4",
+    "argon2": "^0.27.0",
+    "laravel-mix": "^5.0.5",
+    "mflx": "^1.1.5",
     "mysql": "^2.18.1",
+    "node-cron": "^2.0.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "uwu-js": "^1.0.3"

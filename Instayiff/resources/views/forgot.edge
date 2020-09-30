@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="initial-scale=1.0">
+  <title>Instayiff</title>
+  
+  {{ style('fonts') }}
+  {{ style('dist/main') }}
+
+</head>
+<body class="flx(column,wrap) center middle" style="min-height: 100vh;">
+  <div class="card is-4">
+    <div style="margin:1em;" class="flx(column,wrap) center middle">
+        <h2 class="is-title font1">Account Recovery</h2>
+        <h3 class="is-subtitle font5" style="text-align: center;">Enter your Email so we can recover your account</h3>
+    </div>
+    <div class="flx(column) middle center">
+      <form class="flx(column) center middle" action="/recover" method="POST">
+        {{ csrfField() }}
+
+        <label id="label" class="is-fluid">Email</label>
+        <input style="margin-bottom: .5em; text-align: center;" class="padme is-half" type="text" name="email" >
+        <input class="btn is-primary" type="submit" name="submit">
+        <!--confirmation message here that it was sent to an email.--->
+      </form>
+      @if(flashMessage('info'))
+        @include('components.infoNotification')
+      @endif
+      @include('components.errorValidation')
+    </div>
+  </div>
+</body>
+
+              

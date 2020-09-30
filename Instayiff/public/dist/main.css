@@ -2,69 +2,468 @@
 
 /*a basic flex-box library*/
 
+:root {
+  --primary: #6853dfff;
+  --secondary: #fa900fff;
+  --success: #8bc926;
+  --warning: #ffca38;
+  --error: #ff575c;
+  --info: #1981c2;
+  --black: #242423ff;
+  --white: #fcf9edff;
+  --main-title: 'cookiemonster';
+  --sub-titles: 'justanotherhand';
+  --paragraphs: 'jollygood';
+  --title-size: 5rem;
+  --subtitle-size: 2.5rem;
+  --padme-setting: .5em .5em .5em .5em;
+  --button-roundness: 2em 2em 2em 2em;
+}
+
+:focus {
+  outline: none;
+}
+
+::-moz-focus-inner {
+  border: 0;
+}
+
+h1 {
+  font-family: var(--main-title), "sans-serif";
+  font-size: var(--title-size);
+}
+
+h2 {
+  font-size: var(--subtitle-size);
+}
+
+h2,
+h3,
+h4,
+h6 {
+  font-family: var(--sub-titles), "sans";
+}
+
+body,
+p,
+button,
+a,
+textarea,
+select,
+input,
+submit,
+.link {
+  font-family: var(--paragraphs), "sans";
+  text-decoration: none;
+  outline: none;
+  border: none;
+  padding: 0;
+  margin: .25em 0;
+  line-height: 1;
+  word-break: break-word;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border: solid 1px var(--primary);
+  border-radius: 4px;
+}
+
+button:focus,
+submit:focus,
+a:focus {
+  border: solid 1px black;
+}
+
+input,
+button,
+submit,
+.is-round:active {
+  border: none;
+}
+
+button[disabled],
+input[disabled] {
+  background-color: #ccc;
+  color: grey;
+}
+
+.link:link {
+  text-decoration: inherit;
+  color: var(--info);
+}
+
+.link:visited {
+  color: var(--info);
+}
+
+/*color lightened by 5%*/
+
+.link:hover,
+.link:focus {
+  border: 0;
+  color: #1c90d9;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.primary {
+  background-color: var(--primary);
+}
+
+.secondary {
+  background-color: var(--secondary);
+}
+
+.white {
+  background-color: var(--white);
+}
+
+.black {
+  background-color: var(--black);
+}
+
+.flx\(\),
 .flx {
+  display: flex;
+}
+
+.flx\(wrap\) {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flx\(column\) {
+  display: flex;
+  flex-direction: column;
+}
+
+.flx\(nowrap\) {
   display: flex;
   flex-wrap: nowrap;
 }
 
-.wrap {
-  flex-wrap: wrap;
+.flx\(nowrap\,column\),
+.flx\(column\,nowrap\) {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
 }
 
-/*vertical alignment*/
+.flx\(column\,wrap\),
+.flx\(wrap\,column\) {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
 
-.f-top {
+/*vertical alignment for non flex items*/
+
+.top {
   align-items: flex-start;
 }
 
-.f-bottom {
+.bottom {
   align-items: flex-end;
 }
 
-.f-baseline {
+.baseline {
   align-items: baseline;
 }
 
-.f-middle {
+.middle {
   align-items: center;
 }
 
-.f-stretch {
+.stretch {
   align-items: stretch;
+}
+
+/*vertical alignment for 'flexible' children*/
+
+.v-top {
+  align-content: flex-start;
+}
+
+.v-bottom {
+  align-content: flex-end;
+}
+
+.v-baseline {
+  align-content: baseline;
+}
+
+.v-middle {
+  align-content: center;
+}
+
+.v-stretch {
+  align-content: stretch;
+}
+
+.v-space-between {
+  align-content: space-between;
+}
+
+.v-space-around {
+  align-content: space-around;
 }
 
 /*horizontal alignment*/
 
-.f-left {
+.left {
   justify-content: flex-start;
 }
 
-.f-right {
+.right {
   justify-content: flex-end;
 }
 
-.f-center {
+.center {
   justify-content: center;
 }
 
-.f-space-evenly {
+.space-evenly {
   justify-content: space-evenly;
 }
 
-.f-space-around {
+.space-around {
   justify-content: space-around;
 }
 
-.f-space-between {
+.space-between {
   justify-content: space-between;
 }
 
-.f-flow-column {
-  flex-direction: column;
+.padme {
+  padding: var(--padme-setting);
 }
 
-.f-flow-reverse {
-  flex-direction: row-reverse;
+.is-1 {
+  min-width: 8.333333333%;
+}
+
+.is-2 {
+  min-width: 16.666666666%;
+}
+
+.is-3,
+.is-quarter {
+  min-width: 24.999999999%;
+}
+
+.is-4,
+.is-one-third {
+  min-width: 33.333333333%;
+}
+
+.is-5 {
+  min-width: 41.666666666%;
+}
+
+.is-6,
+.is-half {
+  min-width: 49.999999999%;
+}
+
+.is-7 {
+  min-width: 58.333333333%;
+}
+
+.is-8,
+.is-two-thirds {
+  min-width: 66.666666666%;
+}
+
+.is-9,
+.is-three-quarters {
+  min-width: 74.999999999%;
+}
+
+.is-10 {
+  min-width: 83.333333333%;
+}
+
+.is-11 {
+  min-width: 91.666666666%;
+}
+
+.is-12,
+.is-full {
+  min-width: 100%;
+}
+
+.is-fluid {
+  min-width: 0;
+}
+
+.btn\(\),
+.btn,
+.btn\(normal\) {
+  background-color: var(--white);
+  border-width: 1px;
+  color: var(--black);
+  cursor: pointer;
+  font-size: 1em;
+  justify-content: center;
+  padding: calc(0.5em - 1px) 1em;
+  line-height: 1.5em;
+  text-align: center;
+  white-space: nowrap;
+  outline: none;
+}
+
+.btn\(small\) {
+  background-color: var(--white);
+  color: var(--black);
+  cursor: pointer;
+  padding: calc(0.25em - 1px) 0.5em;
+  line-height: 1.5em;
+  text-align: center;
+  white-space: nowrap;
+  font-size: .75em;
+  outline: none;
+}
+
+.btn\(large\) {
+  background-color: var(--white);
+  color: var(--black);
+  cursor: pointer;
+  padding: calc(.75em - 1px) 1.25em;
+  line-height: 1.5em;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 1em;
+  outline: none;
+}
+
+.btn\(xlarge\) {
+  background-color: var(--white);
+  color: var(--black);
+  cursor: pointer;
+  padding: calc(0.25em - 1px) 0.5em;
+  line-height: 1.5em;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 2em;
+  outline: none;
+}
+
+/*
+	each  color has a 2% darken for hover
+	and a 5% darken for active except is-black
+*/
+
+.is-primary {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.is-primary:hover {
+  background-color: #604add;
+}
+
+.is-primary:active {
+  background-color: #553edb;
+}
+
+.is-secondary {
+  background-color: var(--secondary);
+  color: var(--white);
+}
+
+.is-secondary:hover {
+  background-color: #fa8b05;
+}
+
+.is-secondary:active {
+  background-color: #eb8305;
+}
+
+.is-success {
+  background-color: var(--success);
+  color: var(--black);
+}
+
+.is-success:hover {
+  background-color: #85c125;
+}
+
+.is-success:active {
+  background-color: #7cb422;
+}
+
+.is-warning {
+  background-color: var(--warning);
+  color: var(--black);
+}
+
+.is-warning:hover {
+  background-color: #ffc72e;
+}
+
+.is-warning:active {
+  background-color: #ffc31f;
+}
+
+.is-info {
+  background-color: var(--info);
+  color: var(--white);
+}
+
+.is-info:hover {
+  background-color: #187bb9;
+}
+
+.is-info:active {
+  background-color: #1672ac;
+}
+
+.is-error {
+  background-color: var(--error);
+  color: var(--white);
+}
+
+.is-error:hover {
+  background-color: #ff4d52;
+}
+
+.is-error:active {
+  background-color: #ff3d44;
+}
+
+.is-black {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.is-black:hover {
+  background-color: #1f1f1e;
+}
+
+.is-black:active {
+  background-color: var(--black);
+}
+
+.is-white {
+  background-color: var(--white);
+  color: var(--black);
+}
+
+.is-white:hover {
+  background-color: #fbf6e4;
+}
+
+.is-white:active {
+  background-color: #f8f2d7;
+}
+
+.is-round {
+  border-radius: var(--button-roundness);
 }
 
 a {
@@ -100,68 +499,34 @@ a {
 
 .is-title {
   color: #242423ff;
+  text-shadow: -1px -1px 0 #fcf9edff, 1px -1px 0 #fcf9edff, -1px 1px 0 #fcf9edff, 1px 1px 0 #fcf9edff;
 }
 
-html {
-  background-color: #fcf9edff;
-  font-family: "jollygood", "sans";
-}
-
-body {
-  background-image: url(/background1.jpg);
-  font-family: "jollygood";
+.splash-page {
   color: #242423ff;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-ul {
-  padding: 0;
-}
-
-ul li {
-  display: inline;
-  padding: 1em;
-}
-
-h1 {
-  font-family: "justanotherhand";
-  font-size: 5em;
-}
-
-h2 {
-  font-family: "quitemagical";
-  font-size: 3em;
+  margin: 0;
 }
 
 footer {
   background-color: #6853dfff;
-  padding: 2em;
+  padding: 4rem 0;
   font-size: 2em;
+  margin: 0;
 }
 
-.login {
-  padding: 8em 0;
+footer ul > li {
+  margin: 0 .2em;
 }
 
-.yiff-button {
-  background-color: #fa900fff;
-  margin-bottom: 0.5em;
-  color: white;
-}
-
-.yiff-button2 {
-  background-color: #6853dfff;
-  margin-bottom: 0.5em;
-  color: white;
+footer li > a {
+  font-family: "justanotherhand";
 }
 
 .card {
   background-color: #fcf9edff;
   padding: 3em 2em;
   border-radius: 25px;
-  max-width: 22em;
-  width: 20em;
+  max-width: 20em;
   box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.02);
 }
 
@@ -172,5 +537,22 @@ footer {
 
 .show-border {
   border: dashed pink 2px;
+}
+
+.hidden {
+  visibility: none;
+  display: none;
+}
+
+@media screen and (min-height: 1000px) {
+  footer {
+    padding: 11% 0;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .splash-page {
+    font-size: 80%;
+  }
 }
 
