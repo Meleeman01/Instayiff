@@ -1,0 +1,350 @@
+/*a basic flex-box library*/
+
+//colors
+
+//	these can be whatever colors you want,
+//  	however, it's best to have a black,white, ui colors as described here,
+//  	and one or 2 main website colors.
+
+$sizzling-red: hsla(358, 100%, 67%, 1);
+$sunglow: hsla(44, 100%, 61%, 1);
+$yellow-green: hsla(83, 68%, 47%, 1);
+$green-blue-crayola: hsla(203, 77%, 43%, 1);
+//UI colors ^
+
+$majorelle-blue: #6853dfff;
+$yellow-orange: #fa900fff;
+$floral-white: #fcf9edff;
+$eerie-black: #242423ff;
+//main colors for site ^
+
+$primary:$majorelle-blue;
+$secondary:$yellow-orange;
+$success:$yellow-green;
+$warning:$sunglow;
+$error:$sizzling-red;
+$info:$green-blue-crayola;
+$black:$eerie-black;
+$white:$floral-white;
+
+//typography
+$maintitle:'cookiemonster';
+$subtitles:'justanotherhand';
+$paragraphs:'jollygood';
+
+//define variables here
+:root {
+  --primary: #{$primary};
+  --secondary: #{$secondary};
+  --success: #{$success};
+  --warning: #{$warning};
+  --error: #{$error};
+  --info: #{$info};
+  --black: #{$black};
+  --white: #{$white};
+  --main-title:'#{$maintitle}';
+  --sub-titles:'#{$subtitles}';
+  --paragraphs:'#{$paragraphs}';
+  --title-size:5rem;
+  --subtitle-size:2.5rem;
+  --padme-setting:.5em .5em .5em .5em;
+  --button-roundness:2em 2em 2em 2em;
+}
+
+:focus {outline:none;}
+::-moz-focus-inner {border:0}
+
+h1{
+	font-family: var(--main-title),'sans-serif';
+	font-size: var(--title-size);
+}
+h2{
+	font-size: var(--subtitle-size);
+}
+
+h2,h3,h4,h6{
+	font-family: var(--sub-titles), 'sans';
+}
+
+body,p,button,a,textarea, select,input, submit, .link,  {
+	font-family: var(--paragraphs), 'sans';
+	text-decoration: none;
+	outline: none;
+	border: none;
+	padding: 0;
+	margin: .25em 0;
+	line-height: 1;
+	word-break: break-word; 
+}
+input:focus,textarea:focus, select:focus {border:solid 1px var(--primary); border-radius: 4px;}
+button:focus, submit:focus, a:focus {border:solid 1px black; }
+
+input, button, submit,.is-round:active{ border:none; } 
+button[disabled],input[disabled],{background-color: #ccc; color: grey;}
+
+.link:link{text-decoration: inherit; color: var(--info);}
+.link:visited{color: var(--info);}
+/*color lightened by 5%*/
+.link:hover,.link:focus{ border:0; color:lighten($info,5%);}
+
+ul{list-style-type: none; padding: 0;}
+
+.primary{background-color:var(--primary);}
+.secondary{background-color:var(--secondary);}
+.white{background-color:var(--white);}
+.black{background-color:var(--black);}
+
+//define our syntax
+.flx\(\),.flx{
+	display: flex;
+}
+.flx\(wrap\){
+	display: flex;
+	flex-wrap:wrap;
+}
+.flx\(column\){
+	display: flex;
+	flex-direction:column;
+}
+.flx\(nowrap\){
+	display: flex;
+	flex-wrap:nowrap;
+}
+//if column...
+.flx\(nowrap\,column\),
+.flx\(column\,nowrap\) {
+	display: flex;
+	flex-wrap:nowrap;
+	flex-direction:column;
+}
+
+.flx\(column\,wrap\),
+.flx\(wrap\,column\) {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction:column;
+}
+
+/*vertical alignment for non flex items*/
+
+.top{
+	align-items: flex-start;
+}
+.bottom{
+	align-items: flex-end;
+}
+.baseline{
+	align-items:baseline;
+}
+.middle{
+	align-items:center;
+}
+.stretch{
+	align-items:stretch;
+}
+
+/*vertical alignment for 'flexible' children*/
+.v-top {
+  align-content: flex-start; }
+
+.v-bottom {
+  align-content: flex-end; }
+
+.v-baseline {
+  align-content: baseline; }
+
+.v-middle {
+  align-content: center; }
+
+.v-stretch {
+  align-content: stretch; }
+.v-space-between {
+	align-content:space-between;
+}
+.v-space-around {
+	align-content:space-around;
+}
+
+/*horizontal alignment*/
+
+.left{
+	justify-content: flex-start;
+}
+.right{
+	justify-content: flex-end;
+}
+.center{
+	justify-content:center;
+}
+.space-evenly{
+	justify-content:space-evenly;
+}
+.space-around{
+	justify-content: space-around;
+}
+.space-between{
+	justify-content: space-between;
+}
+
+//add a little padding to your columns
+.padme {
+	padding: var(--padme-setting);
+}
+
+//columns
+.is-1{min-width: 8.333333333%;}
+.is-2{min-width: 16.666666666%;}
+.is-3,.is-quarter{min-width: 24.999999999%;}
+.is-4, .is-one-third{min-width: 33.333333333%;}
+.is-5{min-width: 41.666666666%;}
+.is-6,.is-half{min-width: 49.999999999%;}
+.is-7{min-width: 58.333333333%;}
+.is-8, .is-two-thirds{min-width: 66.666666666%;}
+.is-9,.is-three-quarters{min-width: 74.999999999%;}
+.is-10{min-width: 83.333333333%;}
+.is-11{min-width: 91.666666666%;}
+.is-12, .is-full{min-width: 100%;}
+.is-fluid {min-width: 0;}
+
+//use on a div span or button ofcourse
+//usage btn(size,type) color
+.btn\(\),.btn,.btn\(normal\) {
+	background-color:  var(--white);
+  	border-width: 1px;
+  	color: var(--black);
+  	cursor: pointer;
+  	font-size: 1em;
+  	justify-content: center;
+  	padding: calc(0.5em - 1px) 1em;
+  	line-height: 1.5em;
+  	text-align: center;
+  	white-space: nowrap;
+  	outline: none;
+}
+
+//sizes
+.btn\(small\) {
+	background-color:  var(--white);
+  	color: var(--black);
+  	cursor: pointer;
+  	padding: calc(0.25em - 1px) .5em;
+  	line-height: 1.5em;
+  	text-align: center;
+  	white-space: nowrap;
+  	font-size: .75em;
+  	outline: none;
+}
+.btn\(large\) {
+	background-color:  var(--white);
+  	color: var(--black);
+  	cursor: pointer;
+  	padding: calc(.75em - 1px) 1.25em;
+  	line-height: 1.5em;
+  	text-align: center;
+  	white-space: nowrap;
+  	font-size: 1em;
+  	outline: none;
+}
+.btn\(xlarge\) {
+	background-color:  var(--white);
+  	color: var(--black);
+  	cursor: pointer;
+  	padding: calc(0.25em - 1px) .5em;
+  	line-height: 1.5em;
+  	text-align: center;
+  	white-space: nowrap;
+  	font-size: 2em;
+  	outline: none;
+}
+
+/*
+	each  color has a 2% darken for hover
+	and a 5% darken for active except is-black
+*/
+//color modifiers for buttons
+.is-primary{
+	background-color: var(--primary);
+	color: var(--white);
+}
+.is-primary:hover{
+	background-color:darken($primary,2%);
+}
+.is-primary:active{
+	background-color:darken($primary,5%);
+}
+.is-secondary{
+	background-color: var(--secondary);
+	color: var(--white);
+}
+.is-secondary:hover{
+	background-color:darken($secondary,2%);
+}
+.is-secondary:active{
+	background-color:darken($secondary,5%);
+}
+.is-success{
+	background-color: var(--success);
+	color: var(--black);
+}
+.is-success:hover{
+	background-color:darken($success,2%);
+}
+.is-success:active{
+	background-color:darken($success,5%);
+}
+.is-warning{
+	background-color: var(--warning);
+	color: var(--black);
+}
+.is-warning:hover{
+	background-color:darken($warning,2%);
+}
+.is-warning:active{
+	background-color:darken($warning,5%);
+}
+.is-info{
+	background-color: var(--info);
+	color: var(--white);
+}
+.is-info:hover{
+	background-color:darken($info,2%);
+}
+.is-info:active{
+	background-color:darken($info,5%);
+}
+.is-error{
+	background-color: var(--error);
+	color: var(--white);
+	
+}
+.is-error:hover{
+  	background-color:darken($error,2%);
+
+}
+.is-error:active{
+	background-color:darken($error,5%);
+}
+
+.is-black{
+	background-color: var(--black);
+	color: var(--white);
+}
+.is-black:hover{
+	background-color:darken($black,2%);
+}
+.is-black:active{
+	background-color:var(--black);
+}
+.is-white{
+	background-color: var(--white);
+	color: var(--black);
+}
+.is-white:hover{
+  		background-color:darken($white,2%);
+}
+.is-white:active{
+  		background-color:darken($white,5%);
+}
+.is-round {
+	border-radius: var(--button-roundness);
+}

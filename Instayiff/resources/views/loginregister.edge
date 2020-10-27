@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="initial-scale=1.0">
+  <title>Instayiff</title>
+  
+  {{ style('fonts') }}
+  {{ style('dist/main') }}
+
+</head>
+<body class="splash-page">
+  <img src="/background1.jpg" style="position: fixed; z-index: -1;">
+  <section style="margin-bottom:3em;" class=" flx(wrap) space-evenly is-full">
+      <div class="is-half flx(wrap)"></div>
+      <div class="is-half flx(wrap) center">
+          <div class="flx(center) center">
+              <div class="flx(wrap,column) center is-6 ">
+                  <h1 style="text-align: center;" class="">Instayiff</h1>
+              </div>
+              <div class="card">
+                <div style="margin:1em;" class="flx(column,wrap) center middle">
+                <h2 class="is-title font1">Login/Register</h2>
+                <h3 class="is-subtitle font5">Instagram for furries!</h3>
+              </div>
+              <div class="flx(column) middle center">
+                <form id="login" class="flx(column) center middle " action="/signin" method="POST">
+                  {{ csrfField() }}
+
+                  <label id="label" class="is-fluid">Username or Email</label>
+                  <input style="margin-bottom: .5em; text-align: center;" class="padme is-half" type="text" name="username" >
+                   
+                  <label class="is-fluid hidden register" disabled>Email</label>
+                  <input style="margin-bottom: .5em; text-align: center;" class="padme is-half hidden register" type="email" name="email" disabled>
+                  <label class="is-fluid">Password</label>
+                  <input style="margin-bottom: .5em; text-align: center;" class="padme is-half" type="password" name="password">
+                  <label class="is-fluid hidden register" disabled>Confirm Password</label>
+                  <input style="margin-bottom: .5em; text-align: center;" class="padme is-half hidden register" type="password" name="password_confirmation" disabled>
+                  <input id="submit" class="hidden" type="submit" name="">
+                </form>
+                  
+                    <button id="toggle" class="btn is-secondary font5">I'm New</button>
+                    <button type="submit" class="btn is-primary font5">login</button>
+
+                  <a href="/forgot">I forgot my password!</a>
+                  @if(flashMessage('error'))
+                    @include('components.errorNotification')
+
+                  @endif
+                    @include('components.errorValidation')
+                </div>
+              </div>
+          </div>
+              
+      </div>
+  </section>
+
+  @include('layouts.staticfooter')
+  <script>
+      let button = document.querySelector('#toggle');
+      let form = document.querySelector('#login');
+      let button2 = document.querySelector('.is-primary');
+      let submit = document.querySelector('#submit');
+      let hiddenFields = document.querySelectorAll('.register');
+      let label = document.querySelector('#label');
+
+      button.addEventListener('click',function() {
+          console.log(this.innerHTML);
+          if (this.innerHTML !== "I'm New") {
+              this.innerHTML = "I'm New";
+              //update login text
+              label.innerHTML = "Username or Email";
+
+              //hide the email form
+              hiddenFields.forEach(function(i) {
+                  i.classList.add('hidden');
+                  i.setAttribute('disabled',true);
+              });
+
+              //set submit and form action to login
+              form.action = '/signin';
+              button2.innerHTML = "Login";
+          }
+          else {
+
+              this.innerHTML = "I'm A Returning User";
+
+              console.log(hiddenFields);
+              //update login text
+              label.innerHTML = "Username";
+
+              //set submit and form to register
+              hiddenFields.forEach(function(i) {
+                  i.classList.remove('hidden');
+                  i.removeAttribute('disabled');
+              });
+
+              form.action = '/register';
+              button2.innerHTML = "Register";
+          }
+      });
+
+      button2.addEventListener('click',function(){
+          submit.click();
+      });
+  </script>
+</body>
+</html>

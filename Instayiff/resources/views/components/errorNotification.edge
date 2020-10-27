@@ -1,0 +1,12 @@
+<div id="error-msg" class="is-error padme" style="text-align: center;">
+    {{ flashMessage('error') }}
+</div>
+<script>
+	document.addEventListener("DOMContentLoaded", function(event) { 
+	    //for session errors returned from server.
+	    let err = document.querySelector('#error-msg');
+	    err.addEventListener("click",function(e) {
+	        this.classList.add('hidden');
+	    });
+	});
+</script>

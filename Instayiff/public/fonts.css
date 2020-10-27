@@ -1,0 +1,28 @@
+/*fonts*/
+@font-face {
+    font-family: 'justanotherhand';
+    src: url(dist/justanotherhand-regular.ttf) 
+}
+@font-face {
+    font-family: 'jollygood';
+    src: url(dist/jollygoodsans-basic-webfont.woff2) format('woff2')
+}
+@font-face {
+    font-family: 'cookiemonster';
+    src: url(dist/Cookiemonster-gv11.ttf) format('truetype')
+}
+@font-face {
+    font-family: 'full_neue';
+    src: url(dist/full_neue_lc_50_book-webfont.woff2) format('woff2')
+}
+
+@font-face {
+    font-family: 'quitemagical';
+    src: url(dist/QuiteMagicalRegular-8VA2.ttf) 
+}
+
+@font-face {
+    font-family: 'hashbrowns';
+    src: url(dist/HashedBrowns-WyJgn.ttf) 
+}
+

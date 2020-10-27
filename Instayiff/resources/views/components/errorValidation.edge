@@ -1,0 +1,13 @@
+{{ elIf('<span class="is-error padme error-val" style="text-align:center">$self</span>', getErrorFor('username'), hasErrorFor('username')) }}
+{{ elIf('<span class="is-error padme error-val" style="text-align:center">$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
+
+{{ elIf('<span class="is-error padme error-val" style="text-align:center">$self</span>', getErrorFor('password'), hasErrorFor('password')) }}
+{{ elIf('<span class="is-error padme error-val" style="text-align:center">$self</span>', getErrorFor('password_confirmation'), hasErrorFor('password_confirmation')) }}
+<script>
+	document.addEventListener("DOMContentLoaded", function(event) { 
+    		let errVal = document.querySelector('.error-val');
+    		errVal.addEventListener("click",function(e) {
+    			this.classList.add('hidden');
+    		});
+    	});
+</script>

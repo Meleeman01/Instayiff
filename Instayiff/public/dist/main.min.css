@@ -1,0 +1,47 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:300);/*colors for applicaton*/
+
+@font-face {
+  font-family: "justanotherhand";
+  src: url(/fonts/justanotherhand-regular.ttf?bcf61fe1957c0455bdc6c67a2131d62c), format("truetype");
+}
+
+html {
+  background-color: whitesmoke;
+}
+
+ul {
+  list-style-type: none;
+  display: inline;
+}
+
+ul li {
+  display: inline;
+  padding: 1em;
+}
+
+h1 {
+  font-family: "justanotherhand";
+  font-size: 3em;
+}
+
+section {
+  border: 4px #242423ff dotted;
+}
+
+footer {
+  background-color: #6853dfff;
+  padding: 5em;
+}
+
+.app-style {
+  border-radius: 3px;
+  border: solid black 2px;
+  margin: 0 auto;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+

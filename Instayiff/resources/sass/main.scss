@@ -1,32 +1,87 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300');
+/*colors for applicaton*/
+$majorelle-blue: #6853dfff;
+$yellow-orange: #fa900fff;
+$floral-white: #fcf9edff;
+$eerie-black: #242423ff;
 
-html {
-	background-color: whitesmoke;
+@import 'mflx';
+@import '_links';
+
+
+/*fonts for applicaton*/
+.font1{
+	font-family: "justanotherhand";
+	color: $eerie-black;
 }
-body {
-	font-family: 'Montserrat', sans-serif;
-  	font-weight: 300;
-  	background-color: whitesmoke;
-  	margin: 3em 0;
-  	display: flex;
-  	justify-content:center;
+.font2{
+	font-family: "quitemagical";
+}
+.font3{
+	font-family: "cookiemonster";
+}
+.font4{
+	font-family: "hashbrowns";
+}
+.font5{
+	font-family: "jollygood";
+}
+.font6{
+	font-family: "full_neue";
 }
 
-section {
-	height: 400px;
-	display: flex;
-	background-color: white;
+.is-title {
+	color: $eerie-black;
+	text-shadow: -1px -1px 0 $floral-white, 1px -1px 0 $floral-white, -1px 1px 0 $floral-white, 1px 1px 0 $floral-white;
 }
 
-.app-style{
-    border-radius: 3px;
-    border:solid black 2px;
-    margin: 0 auto;
+
+.splash-page {
+
+color: $eerie-black;
+margin: 0;
 }
 
-.flex {
-	display: flex;
-	align-items:center;
-	justify-content:space-between;
+
+footer {
+
+  background-color: #6853dfff;
+  padding: 4rem 0;
+  font-size: 2em;
+  ul > li {
+  	margin: 0 .2em;
+  }
+  li > a {
+  	font-family: "justanotherhand";
+  }
+  margin: 0;
 }
 
+
+.card {
+	background-color: $floral-white;
+	padding: 3em 2em;
+	border-radius: 25px;
+	max-width: 20em;
+	box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
+}
+
+.container1 {
+	max-width: 22em;
+	width: 20em;
+}
+
+
+.show-border {
+	border: dashed pink 2px;
+}
+
+.hidden {
+	visibility: none;
+	display: none;
+}
+
+@media screen and (min-height: 1000px) {
+	footer{padding: 11% 0; position: absolute; bottom: 0;}
+	.splash-page{font-size:80%;}
+}
+	
