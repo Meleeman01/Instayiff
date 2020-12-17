@@ -16,7 +16,7 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route');
 
-Route.get('/', 'UserController.loginPage').middleware('guest');
+Route.get('/', 'UserController.loginPage').middleware('guest'); //redirectIfLogged in should be here
 
 Route.on('/about').render('Misc.about'); //about page
 Route.on('/privacy').render('Misc.privacy'); //privacy page
@@ -31,7 +31,7 @@ Route
 
 //for logging in 
 Route.post('signin', 'UserController.login').validator('login');
-Route.get('feed','FeedController.show').middleware('auth');
+Route.get('feed','FeedController.show').middleware('auth'); 
     
 Route
     .post('register', 'UserController.register')
