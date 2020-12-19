@@ -68,27 +68,27 @@ tech choices, laravel-mix for simplicity in building, and cache busting. node.js
 <h2>Database Schema</h2>
 	
 	users
-		|_id,username, password, email, wallet_id
+		|_id,username, password, email, wallet_id //done
 	roles
-		|_id,admin, mod, premium, user, banned, suspended
+		|_id,admin, mod, premium, user, banned, suspended //done
 	role_user
-			|_id, user-id,role_id, created-at, updated-at
+			|_id, user-id,role_id, created-at, updated-at //done
 	user_data
-			|_id,user-id, bio, species, Age, fav-music, fav-quote, wallet_id, favorites,
+			|_id,user-id, bio, species, Age, fav-music, fav-quote, wallet_id, favorites, //done
 	contacts
-			|_id, user_id , friends , close_friends, followers
+			|_id, user_id , friends , close_friends, followers //this will work for noew lol
 	posts
-		 |_id, tag_id, user_id, album_id, picture_id, video_id, caption, likes, paw-count, tipable, created-at, updated-at.
+		 |_id, tag_id, user_id, album_id, picture_id, video_id, caption, likes, paw-count, tipable, created-at, updated-at. //done
 	comments
-			|_id, tag_id, post_id, text, created-at, updated-at,deleted-at
+			|_id, tag_id, post_id, text, created-at, updated-at,deleted-at //done
 	replies
-		   |_id, post_id, user_id, replyingto, comment_id,created-at,updated-at, deleted-at	
+		   |_id, post_id, user_id, replyingto, comment_id,created-at,updated-at, deleted-at	//done
 	albums
-		  |_id, content, user_id, link, created-at, updated-at, deleted-at
+		  |_id, content, user_id, link, created-at, updated-at, deleted-at //done
 	pictures
-			|_id, album_id, user_id link, created-at, updated-at, deleted-at
+			|_id, album_id, user_id link, created-at, updated-at, deleted-at 
 	videos
-		  |_id, link, user_id, created-at, updated-at, deleted-at
+		  |_id, link, user_id, created-at, updated-at, deleted-at 
 	tags
 		|_id, tagname, created-at, updated-at, deleted-at
 	filters

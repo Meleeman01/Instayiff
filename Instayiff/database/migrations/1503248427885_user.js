@@ -10,7 +10,6 @@ class UserSchema extends Schema {
             table.string('username', 80).notNullable().unique();
             table.string('email', 254).notNullable().unique();
             table.string('password', 255).notNullable();
-            table.integer('wallet_id',254).unique().nullable();
             table.string('reset_token',255).unique().nullable();
             table.timestamp('reset_time').nullable();
             table.timestamps();

@@ -1,9 +1,14 @@
 @include('layouts.feedHeader')
-
+	@loggedIn
 	<!--this is where the react app will live-->
-	<div id="root">
+  	<div id="root">
 	
 	</div>
+	@else
+  	<p> Please login </p>
+	@endloggedIn
+	
+	
 
 
 	<script src="dist/app.js"></script>

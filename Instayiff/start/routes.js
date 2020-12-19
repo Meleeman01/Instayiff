@@ -16,14 +16,14 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route');
 
-Route.get('/', 'UserController.loginPage').middleware('guest'); //redirectIfLogged in should be here
+Route.get('/', 'UserController.loginPage').middleware('redirect'); //redirectIfLogged in should be here
 
 Route.on('/about').render('Misc.about'); //about page
 Route.on('/privacy').render('Misc.privacy'); //privacy page
 
 Route
     .get('/login', 'UserController.loginPage')
-    .middleware('guest');
+    .middleware('redirect');
 
 Route
     .get('users/:id', 'UserController.show')
@@ -31,7 +31,7 @@ Route
 
 //for logging in 
 Route.post('signin', 'UserController.login').validator('login');
-Route.get('feed','FeedController.show').middleware('auth'); 
+Route.get('feed','FeedController.show'); 
     
 Route
     .post('register', 'UserController.register')

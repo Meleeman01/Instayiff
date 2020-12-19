@@ -6,7 +6,7 @@ const Env = use('Env');
 
 class SessionController {
 
-    async logout ({ auth, response }) {
+    async logout ({ auth, response}) {
         /**
          * Logout the user.
          *

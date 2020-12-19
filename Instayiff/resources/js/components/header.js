@@ -36,11 +36,11 @@ class Header extends React.Component {
         }
         
     }
-//we'll have to implement a router of sorts.
+    //we'll have to implement a router of sorts.
     render() {
         return (
             <div className={'flx(wrap) middle space-around header padme primary'}>
-                <div className={'flx(wrap) left middle is-2'}>
+                <div className={'flx(wrap) left middle is-1'}>
                     <img src={'../paw-print1.svg'} />
                 </div> 
                 <div className={'flx(wrap) right middle is-4 search-bar'} >
