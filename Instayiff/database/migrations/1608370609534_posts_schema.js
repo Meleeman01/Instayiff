@@ -7,7 +7,7 @@ class PostsSchema extends Schema {
     up () {
         this.create('posts', (table) => {
             table.increments();
-            table.integer('tag_id').unsigned().references('id').inTable('tags').nullable(); //this might need to be nullable
+            table.string('tags').nullable(); //this might need to be nullable
             table.integer('user_id').unsigned().references('id').inTable('users');
             table.integer('album_id').unsigned().references('id').inTable('albums');
             table.integer('picture_id').unsigned().references('id').inTable('pictures');

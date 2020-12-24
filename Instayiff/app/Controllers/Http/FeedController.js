@@ -7,7 +7,7 @@ class FeedController {
     }
 
     showMore({request}){
-    	// a button will make a request to this api endpoint laterrrrrr
+        // a button will make a request to this api endpoint laterrrrrr
     }
 }
 

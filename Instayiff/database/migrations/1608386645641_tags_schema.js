@@ -8,6 +8,9 @@ class TagsSchema extends Schema {
         this.create('tags', (table) => {
             table.increments();
             table.string('tagname');
+            table.integer('post_id').unsigned().references('id').inTable('posts');
+            table.integer('comment_id').unsigned().references('id').inTable('posts');
+            table.integer('reply_id').unsigned().references('id').inTable('posts');
             table.timestamps();
             table.timestamp('deleted_at');
         });

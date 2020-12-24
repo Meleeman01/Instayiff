@@ -173,7 +173,26 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.header img {\n\theight: 3rem;\n\twidth: 3rem;\n}\n.profile-image {\n\tborder: solid 2px purple;\n\tborder-radius: 100%;\n}\n.search-bar{position: relative;}\n.search-bar > input {border-radius: 1rem;}\n.search-bar > img {\n\tposition: absolute;\n    transform: scaleX(-1);\n    height: 1.5rem;\n    width: 1.5rem;\n    right: 1rem;\n}\n\n.hidden {\n\tdisplay: none;\n\tvisibility: hidden;\n}\n\n", ""]);
+exports.push([module.i, "\n.header img {\n\theight: 3rem;\n\twidth: 3rem;\n}\n.profile-image {\n\tborder: solid 2px purple;\n\tborder-radius: 100%;\n}\n.search-bar{position: relative;}\n.search-bar > input {border-radius: 1rem;}\n.search-bar > img {\n\tposition: absolute;\n    transform: scaleX(-1);\n    height: 1.5rem;\n    width: 1.5rem;\n    right: 1rem;\n}\n\n.hidden {\n\tdisplay: none;\n\tvisibility: hidden;\n}\n\n.active {\n\tdisplay: block;\n\tvisibility: visible;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/styles/modal.css":
+/*!***********************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/styles/modal.css ***!
+  \***********************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".modal {\n\tposition: fixed;\n\tbackground-color:rgba(0,0,0,0.5);\n\theight: 100%;\n\twidth:100%;\n\tz-index: 5;\n\t\n}\n.modal-body {\n\t\tbackground-color: #fcf9edff;\n\t\tpadding: 1em 1em;\n\t\tborder-radius: 25px;\n\t\tmax-width: 20em;\n\t\tbox-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);\n\t}\n\n", ""]);
 
 // exports
 
@@ -33286,7 +33305,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _styles_header_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles/header.css */ "./resources/js/styles/header.css");
 /* harmony import */ var _styles_header_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_styles_header_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _upload__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./upload */ "./resources/js/components/upload.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -33314,6 +33334,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Header = /*#__PURE__*/function (_React$Component) {
   _inherits(Header, _React$Component);
 
@@ -33326,11 +33347,14 @@ var Header = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props); //define a class state lol for hiding the search icon on click
 
+    var upload = _this.props.upload;
     _this.state = {
-      classList: ''
+      classListSearch: '',
+      Upload: false
     };
     _this.search = _this.search.bind(_assertThisInitialized(_this)); //lol dumb
 
+    _this.upload = _this.upload.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -33340,17 +33364,37 @@ var Header = /*#__PURE__*/function (_React$Component) {
       //needs to affect search icon
       console.log(this.props);
 
-      if (this.state.classList == '') {
+      if (this.state.classListSearch == '') {
         console.log(false);
         this.setState(function (state) {
           return {
-            classList: 'hidden'
+            classListSearch: 'hidden'
           };
         });
       } else {
         this.setState(function (state) {
           return {
-            classList: ''
+            classListSearch: ''
+          };
+        });
+      }
+    }
+  }, {
+    key: "upload",
+    value: function upload(e) {
+      console.log(e); //add the active class to show teh upload modal
+
+      if (!this.state.Upload) {
+        this.setState(function (state) {
+          return {
+            Upload: true
+          };
+        });
+      } else {
+        e.stopPropagation();
+        this.setState(function (state) {
+          return {
+            Upload: false
           };
         });
       }
@@ -33359,16 +33403,32 @@ var Header = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      var headerState = this.state.Upload;
+      console.log(headerState);
+      var modal; //maybe make it a function and pass some props?
+
+      if (headerState) {
+        modal = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_upload__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          onDelete: this.upload
+        });
+      }
+
+      if (!headerState) {
+        modal = undefined;
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, modal, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: 'flx(wrap) middle space-around header padme primary'
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: 'flx(wrap) left middle is-1'
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+        to: "/notifications"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: '../paw-print1.svg'
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: 'flx(wrap) right middle is-4 search-bar'
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        className: 'search-button ' + this.state.classList,
+        className: 'search-button ' + this.state.classListSearch,
         src: '../loupe.svg'
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: 'padme is-full',
@@ -33378,28 +33438,27 @@ var Header = /*#__PURE__*/function (_React$Component) {
         onFocus: this.search
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: ' flx(wrap) space-around middle is-4'
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
         to: "/feed"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: '../animal.svg'
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
         to: "/messages"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: '../email.svg'
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
         to: "/explore"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: '../explore.svg'
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: "/upload"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: '../send1.svg'
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: '../send1.svg',
+        onClick: this.upload
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
         to: "/profile"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "profile-image",
         src: "http://placekitten.com/100/100"
-      }))));
+      })))));
     }
   }]);
 
@@ -33407,6 +33466,38 @@ var Header = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (Header);
+
+/***/ }),
+
+/***/ "./resources/js/components/upload.js":
+/*!*******************************************!*\
+  !*** ./resources/js/components/upload.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _styles_modal_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles/modal.css */ "./resources/js/styles/modal.css");
+/* harmony import */ var _styles_modal_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_styles_modal_css__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+function Upload(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: 'modal flx(wrap,column) middle center'
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: ' modal-body flx(wrap,column) middle center is-6'
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: 'is-full flx(wrap) center middle'
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    onClick: props.onDelete
+  }, "Post a Yiff!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "body here ")));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Upload);
 
 /***/ }),
 
@@ -33423,11 +33514,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _components_header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/header */ "./resources/js/components/header.js");
-/* harmony import */ var _pages_feed__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/feed */ "./resources/js/pages/feed.js");
-/* harmony import */ var _pages_explore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/explore */ "./resources/js/pages/explore.js");
-/* harmony import */ var _pages_messages__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/messages */ "./resources/js/pages/messages.js");
-/* harmony import */ var _pages_upload__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/upload */ "./resources/js/pages/upload.js");
-/* harmony import */ var _pages_profile__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/profile */ "./resources/js/pages/profile.js");
+/* harmony import */ var _components_upload__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/upload */ "./resources/js/components/upload.js");
+/* harmony import */ var _pages_feed__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/feed */ "./resources/js/pages/feed.js");
+/* harmony import */ var _pages_explore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/explore */ "./resources/js/pages/explore.js");
+/* harmony import */ var _pages_messages__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/messages */ "./resources/js/pages/messages.js");
+/* harmony import */ var _pages_notifications__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/notifications */ "./resources/js/pages/notifications.js");
+/* harmony import */ var _pages_profile__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/profile */ "./resources/js/pages/profile.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -33460,6 +33552,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var App = /*#__PURE__*/function (_React$Component) {
   _inherits(App, _React$Component);
 
@@ -33477,15 +33570,15 @@ var App = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_header__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         exact: true,
         path: "/feed"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_feed__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_feed__WEBPACK_IMPORTED_MODULE_4__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         path: "/messages"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_messages__WEBPACK_IMPORTED_MODULE_5__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_messages__WEBPACK_IMPORTED_MODULE_6__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         path: "/explore"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_explore__WEBPACK_IMPORTED_MODULE_4__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
-        path: "/upload"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_upload__WEBPACK_IMPORTED_MODULE_6__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_explore__WEBPACK_IMPORTED_MODULE_5__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+        path: "/notifications"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_notifications__WEBPACK_IMPORTED_MODULE_7__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         path: "/profile"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_profile__WEBPACK_IMPORTED_MODULE_7__["default"], null)))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_profile__WEBPACK_IMPORTED_MODULE_8__["default"], null)))));
     }
   }]);
 
@@ -33561,6 +33654,27 @@ function Messages() {
 
 /***/ }),
 
+/***/ "./resources/js/pages/notifications.js":
+/*!*********************************************!*\
+  !*** ./resources/js/pages/notifications.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function Notifications() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Your Notifications"));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Notifications);
+
+/***/ }),
+
 /***/ "./resources/js/pages/profile.js":
 /*!***************************************!*\
   !*** ./resources/js/pages/profile.js ***!
@@ -33582,27 +33696,6 @@ function Profile() {
 
 /***/ }),
 
-/***/ "./resources/js/pages/upload.js":
-/*!**************************************!*\
-  !*** ./resources/js/pages/upload.js ***!
-  \**************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-
-function Upload() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Post a Yiff"));
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (Upload);
-
-/***/ }),
-
 /***/ "./resources/js/styles/header.css":
 /*!****************************************!*\
   !*** ./resources/js/styles/header.css ***!
@@ -33612,6 +33705,36 @@ function Upload() {
 
 
 var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/postcss-loader/src??ref--6-2!./header.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/styles/header.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./resources/js/styles/modal.css":
+/*!***************************************!*\
+  !*** ./resources/js/styles/modal.css ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/postcss-loader/src??ref--6-2!./modal.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/styles/modal.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 

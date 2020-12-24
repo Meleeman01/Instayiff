@@ -1,7 +1,7 @@
 
 
 //main 
-import React from 'react';
+import React, { useState } from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -10,10 +10,11 @@ import {
 } from 'react-router-dom';
 
 import Header from './components/header';
+import Upload from './components/upload';
 import Feed from './pages/feed';
 import Explore from './pages/explore';
 import Messages from './pages/messages';
-import Upload from './pages/upload';
+import Notifications from './pages/notifications';
 import Profile from './pages/profile';
 
 class App extends React.Component {
@@ -32,8 +33,8 @@ class App extends React.Component {
                         <Route path="/explore">
                             <Explore />
                         </Route>
-                        <Route path="/upload">
-                            <Upload />
+                        <Route path="/notifications">
+                            <Notifications />
                         </Route>
                         <Route path="/profile">
                             <Profile />

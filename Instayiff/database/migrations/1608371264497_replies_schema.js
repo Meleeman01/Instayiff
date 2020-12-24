@@ -9,6 +9,7 @@ class RepliesSchema extends Schema {
             table.increments();
             table.integer('post_id').unsigned().references('id').inTable('posts');
             table.integer('user_id').unsigned().references('id').inTable('users');
+            table.string('tags');
             table.integer('replying_to').unsigned().references('id').inTable('users'); 
             table.integer('comment_id').unsigned().references('id').inTable('comments');
             table.timestamps();
