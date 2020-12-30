@@ -39,24 +39,31 @@ class Header extends React.Component {
                 classListSearch: ''
             }));
         }
-        
     }
     upload(e) {
-
-        console.log(e);
-
+        //fetch the event and process it.
+        e.stopPropagation();
+        let arr = e.target.classList;
+        let event;
+        if (e.target.classList!='') {
+            for (let element of arr) {
+                //if our element in the classlist is modal 
+                if (element == 'modal' || element == 'fa-times-circle') {event = element;}
+            }
+        }
+        console.log(e.target.classList);
         //add the active class to show teh upload modal
         if (!this.state.Upload) {
             this.setState(state => ({
                 Upload: true
             }));
-
         }
         else {
-            e.stopPropagation();
-            this.setState(state => ({
-                Upload: false
-            }));
+            if (event == 'modal'|| event == 'fa-times-circle') {
+                this.setState(state => ({
+                    Upload: false
+                }));
+            }
         }
     }
     //we'll have to implement a router of sorts.
@@ -93,10 +100,8 @@ class Header extends React.Component {
                         <Link to="/profile"><img className="profile-image" src="http://placekitten.com/100/100" /></Link>
                     </div>
 
-
                 </div>
             </div>
-            
         );
     }
 }
