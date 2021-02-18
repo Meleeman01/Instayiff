@@ -67,3 +67,4 @@ adonis migration:run
 15. Verification: From home page, create a test account. Check that user information has populated in the users table of the database.
 16. Create and checkout branch for feature to be added, updated, or fixed.
     - Naming convention is feature/{feature being implemented}, ex: feature/readme
+    - On feature completion, push into branch and create pull request. Operation manager will review code and merge into master.
