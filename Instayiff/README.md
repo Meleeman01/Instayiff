@@ -32,14 +32,17 @@ adonis migration:run
 
 ### Project Setup
 
-1. Install node v12.160.0 or greater
+1. Install node v12.16.0 or greater
+    - Download and run the installer, which will install node and npm
     - In terminal run "node -v" to verify install and version
     - In terminal run "npm -v" to verify install and version
 2. Install AdonisJS
+    - In terminal run "npm i -g @adonisjs/cli"
     - In terminal run "adonis". If a list of commands appears the install was successful
         * Trouble shooting step: Windows users may need to run "set-executionpolicy allsigned" in commandline. Mac may need to use sudo.
 3. Install eslint
-4. Install MAMP
+    - In terminal run "npm install eslint --save-dev"
+4. Install MAMP / WAMP / LAMP as appropriate for your system
     - In preferences, ports, ensure MySQL is set to 3306
 5. Install MySql Workbench
     - In schemas, create an instayiff schema
