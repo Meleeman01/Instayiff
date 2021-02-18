@@ -1,9 +1,18 @@
-'use strict'
+'use strict';
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
-const Model = use('Model')
+const Model = use('Model');
 
 class Comment extends Model {
+    user() {
+        return this.belongsTo('App/Models/User');
+    }
+    post() {
+        return this.belongsTo('App/Models/Post');
+    }
+    tags() {
+        return this.hasMany('App/Models/Tag'); //may need to rethink my tagging system....
+    }
 }
 
-module.exports = Comment
+module.exports = Comment;

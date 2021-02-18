@@ -12,7 +12,7 @@ let mix = require('laravel-mix');
  */
 
 mix.react('resources/js/app.js', 'public/dist/')
-   //.copy('node_modules/mflx/scss/mflx.scss', 'resources/sass/') <--this need only be called once
+  // .copy('node_modules/mflx/scss/mflx.scss', 'resources/sass/') //<--this need only be called once
    .sass('resources/sass/main.scss', 'public/dist/');
    
 // Full API
