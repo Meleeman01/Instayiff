@@ -13,10 +13,8 @@ class IncrementPostcount extends Command {
   }
 
   async incrementPosts(){
-    /*Could define an upper post limit here
-    *Assuming using a sql statement will be faster than pulling all user_data and iterating over each object to update the post_count
-    */
-    await Database.raw('update user_data set post_count = post_count + 3');
+    //Could define an upper post limit here, insert .where('post_count', '<', '30') before .increment
+    await Database.table('user_data').increment('post_count', 3);
     Database.close();
   }
 
