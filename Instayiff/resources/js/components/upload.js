@@ -5,14 +5,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Upload(props) {
     //pass in a variable as a string, this will be our state manager in a function lol
+    const modalClose = props.onDelete;
+  
     function select(option) {
         //hardcoded state for app
         if (typeof option == 'string') {
             let state = {
+                close:document.querySelector('.modal-close'),
                 prompt:document.querySelector('#prompt'),
                 output:document.querySelector('#result'),
                 fileInput:document.querySelector('#theFile'),
-                submit:document.querySelector('#uploadSubmit')
+                submit:document.querySelector('#uploadSubmit'),
+                tipsTags:document.querySelector('#tips-and-tags'),
+                uploadStatus:document.querySelector('#uploadStatus')
             };
             return state[option];
         }
@@ -24,7 +29,7 @@ function Upload(props) {
     
     function createPreview(e) {
         let prompt = select('prompt');
-
+        let tipsTags = select('tipsTags');
         if (e) {
             clean();
         }
@@ -56,13 +61,12 @@ function Upload(props) {
                 });
                 fileReader.readAsDataURL(files[file]);
 
-                //prompt.innerHTML = 'add a caption?';
                 prompt.addEventListener('click',function(event) {
                     console.log('change me into an input');
 
-                    prompt.outerHTML = `<input id="prompt" style="text-align center" class="is-full padme" type="text" placeholder="add a caption?"/>`;
+                    prompt.outerHTML = `<input id="prompt" style="text-align center" class="is-full padme" type="text" placeholder="add a caption?" name="caption"/>`;
                 });
-                //caption.classList.remove('hidden');
+                tipsTags.classList.remove('hidden');
             }
         }
     }
@@ -114,13 +118,66 @@ function Upload(props) {
     }
 
     function enableSubmit() {
-        let submitBtn = select('submit');
+        const submitBtn = select('submit');
+        const csrf = select('tipsTags');
+        //make sure we pass the csrf token
+        csrf.innerHTML += `<input type="hidden" name="_csrf" value="${document.querySelector('#random').value}"/>`;
         submitBtn.removeAttribute('disabled');
+    }
+
+    async function statusMessage(message){
+        //select our upload status button
+        const status = select('uploadStatus');
+        const submitBtn = select('submit');
+
+        if (message[0] == undefined) {
+            //this means were successful 
+            status.classList.remove('hidden');
+            status.classList.add('is-info');
+            submitBtn.classList.add('hidden');
+            status.innerHTML='<span>'+message.message+'</span>';
+            //after the message close the modal and goto feed
+            return true;
+        }
+        if (typeof message[0] == 'object') {
+            //this means we have an error
+            status.classList.remove('hidden');
+            status.classList.add('is-error');
+            status.innerHTML='<span>'+message[0].message+'</span>';
+            return false;
+        }
+        
+    }
+    function hideStatusMessage(props){
+        const status = select('uploadStatus');
+        status.classList.add('hidden');
     }
 
     function submit(e) {
         e.preventDefault();
-        console.log('lololsubmit');
+        e.persist();
+        let data = new FormData(e.target);
+        let files = [...data];
+
+        console.log(files);
+        
+        fetch('/post', {
+            credentials: 'include',
+            method: 'POST',
+            body: data,
+        }).then( async (response) => {
+            const message = await response.json();
+            console.log(message);
+
+            if (!await statusMessage(message)) {
+                return;
+            }
+            else {
+                await e.target.classList.add('modal-success');
+                await setTimeout(()=>{props.onDelete(e);},1000);
+            }
+            
+        }).catch( (error) => {console.log('error============:', error);});
     }
 
     return (
@@ -139,19 +196,25 @@ function Upload(props) {
                     <button onClick={(event)=>video(event)} className={'btn is-secondary  is-round flx'}><FontAwesomeIcon icon='video' /></button>
                 </div>
             	<div>
-                    <form className={'flx(column) middle center'}>
+                    <form encType="multipart/mixed" className={'flx(column) middle center'} onSubmit={(event)=>submit(event)}>
                         
                         <output id='result' className="flx(wrap) space-around middle "/>
-                        <input onChange={(event)=>createPreview(event)}  type="file" id="theFile" />
+                        <input onChange={(event)=>createPreview(event)}  type="file" id="theFile" name="files[]" />
                         <p id="prompt">Click one of the buttons above to upload a file</p>
-                        <div id="" className={'is-full '}>
-                            <label>Tippable?</label>
-                            <input type='checkbox' />
-                            <label>Tags</label>
-                            <input type='text' placeholder="#selfie #otter #wolf"/>
+                        <div id="tips-and-tags" className={'is-full flx(column,wrap) col-left col-middle hidden'}>
+                            <div className={'flx(wrap) left middle is-full'}>
+                                <label className={'padme'}>Tippable?:</label>
+                                <input name='tipable' type='checkbox' />
+                            </div>
+                            <div className={'flx(wrap) left middle is-full'}>
+                                <label className="padme">Tags:</label>
+                                <input className="padme" type='text' name='tags' placeholder="(i.e.) #selfie #otter #wolf"/>
+                            </div>
+
                         </div>
-                        <button id="uploadSubmit" onClick={(event)=>submit(event)} className={'btn is-success is-round flx middle center is-6 marginme'} type="submit" disabled>Yiff!</button>
+                        <button id="uploadSubmit" className={'btn is-success is-round flx middle center is-6 marginme'} disabled>Yiff!</button>
                     </form>
+                    <div id="uploadStatus" onClick={(event)=>hideStatusMessage(event)} className={'hidden padme'}></div>
                 </div>
             </div>
         </div>

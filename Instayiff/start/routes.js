@@ -33,6 +33,10 @@ Route.group(()=>{ //these are all pages that have no static pages yet
     Route.get('forgot','SessionController.forgot');
 }).middleware('redirect');//redirect if a user is logged in
 
+//for posts
+Route.group(()=>{
+    Route.post('/post','PostController.create');
+});
 
 Route
     .get('users/:id', 'UserController.show')
@@ -50,7 +54,7 @@ Route
 Route.get('logout', 'SessionController.logout');
 
 //display forgot modal to send an account renewal link
- //might need to refactor the session and USER controller..
+//might need to refactor the session and USER controller..
 Route
     .post('recover', 'SessionController.emailReset')
     .validator('passwordReset');

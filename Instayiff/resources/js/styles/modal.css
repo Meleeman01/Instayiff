@@ -32,3 +32,13 @@
 	display: none;
 }
 
+#tips-and-tags > div > label {
+	padding-left: 0;
+}
+#tips-and-tags > div > input[type="text"]{
+	width: 100%;
+}
+
+#uploadStatus {
+	text-align: center;
+}

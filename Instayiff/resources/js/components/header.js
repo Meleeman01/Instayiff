@@ -48,10 +48,10 @@ class Header extends React.Component {
         if (e.target.classList!='') {
             for (let element of arr) {
                 //if our element in the classlist is modal 
-                if (element == 'modal' || element == 'fa-times-circle') {event = element;}
+                if (element == 'modal' || element == 'fa-times-circle' || element == 'modal-success') {event = element;}
             }
         }
-        console.log(e.target.classList);
+
         //add the active class to show teh upload modal
         if (!this.state.Upload) {
             this.setState(state => ({
@@ -59,14 +59,18 @@ class Header extends React.Component {
             }));
         }
         else {
-            if (event == 'modal'|| event == 'fa-times-circle') {
+            if (event == 'modal'|| event == 'fa-times-circle' || event == 'modal-success') {
                 this.setState(state => ({
                     Upload: false
                 }));
+                if (event == 'modal-success') {
+                    //click on the feed if we uploaded post successfully
+                    document.querySelector('.feed').click();
+                }
             }
         }
     }
-    //we'll have to implement a router of sorts.
+
     render() {
         let headerState = this.state.Upload;
         console.log(headerState);
@@ -85,15 +89,15 @@ class Header extends React.Component {
                 <div className={'flx(wrap) middle space-around header padme primary'}>
                 
                     <div className={'flx(wrap) left middle is-1'}>
-                        <Link to="/notifications"><img src={'../paw-print1.svg'} /></Link>
+                        <Link style={{marginRight:.5+'rem'}} to="/notifications"><img src={'../paw-print1.svg'} /></Link>
                     </div> 
-                    <div className={'flx(wrap) right middle is-4 search-bar'} >
+                    <div className={'flx(wrap) right middle is-6 search-bar'} >
                         <img className={'search-button '+this.state.classListSearch} src={'../loupe.svg'}/>
                         <input className={'padme is-full'} type="text" placeholder="search for furry goodness?" onBlur={this.search} onFocus={this.search}/> 
                     </div>
 
-                    <div className={' flx(wrap) space-around middle is-4'}>
-                        <Link to="/feed"><img src={'../animal.svg'} /></Link>
+                    <div className={' flx(wrap) space-around middle is-4 nav'}>
+                        <Link className={'feed'} to="/feed"><img src={'../animal.svg'} /></Link>
                         <Link to="/messages"><img src={'../email.svg'} /></Link>
                         <Link to="/explore"><img src={'../explore.svg'} /></Link>
                         <img src={'../send1.svg'} onClick={this.upload} />

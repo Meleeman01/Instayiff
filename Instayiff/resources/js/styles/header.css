@@ -3,6 +3,9 @@
 	height: 3rem;
 	width: 3rem;
 }
+.nav > a,img {
+	margin-right: .25rem;
+}
 .profile-image {
 	border: solid 2px purple;
 	border-radius: 100%;

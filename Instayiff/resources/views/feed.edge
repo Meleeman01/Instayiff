@@ -1,8 +1,9 @@
 @include('layouts.feedHeader')
 	@loggedIn
 	<!--this is where the react app will live-->
+	<input id="random" type="hidden" name="csrf" value="{{ csrfToken }}">
   	<div id="root">
-	
+
 	</div>
 	@else
   	<p> Please login </p>
