@@ -15,6 +15,7 @@ class UserDataSchema extends Schema {
             table.string('fav_quote',255).nullable();
             table.integer('wallet_id').nullable();
             table.string('favorites').nullable();
+            table.integer('posts_left').notNullable().default(3); //Should have an upper limit, default of 3 is placeholder.
             table.timestamps();
         });
     }
