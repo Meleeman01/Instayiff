@@ -15,15 +15,15 @@ class IncrementPostcount extends Command {
   async incrementPosts(){
     await Database.raw('update user_data set post_count = post_count + 3')
   }
-  
-  async handle (args, options) {
-    this.info('Dummy implementation for increment:postcount command')
-    var cron = require('node-cron');
 
-    
-    cron.schedule('*/5 * * * * *', () => {
+  async handle (args, options) {
+
+    this.info('increment:postcount command start')
+
+    var cron = require('node-cron');
+    cron.schedule('0 0 * * *', () => {
       this.incrementPosts();
-      console.log('running a task every 5 seconds');
+      console.log('Increment interval triggered');
     });
   }
 }
