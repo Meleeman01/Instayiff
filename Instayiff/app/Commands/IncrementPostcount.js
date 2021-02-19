@@ -15,8 +15,7 @@ class IncrementPostcount extends Command {
 
   async incrementPosts(){
     //Could define an upper post limit here, insert .where('post_count', '<', '30') before .increment
-    await Database.table('user_data').increment('post_count', 3);
-    Database.close();
+    await Database.table('user_data').increment('posts_left', 3);
   }
 
   async handle (args, options) {
@@ -24,10 +23,10 @@ class IncrementPostcount extends Command {
     this.info('increment:postcount command start')
 
     // Test version, triggers every 5 seconds.
-    // cron.schedule('*/5 * * * * *', () => {
-    //   this.incrementPosts();
-    //   console.log('Increment interval triggered');
-    // });
+    cron.schedule('*/5 * * * * *', () => {
+      this.incrementPosts();
+      console.log('Increment interval triggered');
+    });
 
     // Will trigger at midnight
     cron.schedule('0 0 * * *', () => {
