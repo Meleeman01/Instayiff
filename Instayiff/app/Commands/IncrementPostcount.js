@@ -2,6 +2,7 @@
 
 const { Command } = require('@adonisjs/ace')
 const Database = use('Database')
+const cron = require('node-cron')
 
 class IncrementPostcount extends Command {
   static get signature () {
@@ -21,8 +22,6 @@ class IncrementPostcount extends Command {
   async handle (args, options) {
 
     this.info('increment:postcount command start')
-
-    var cron = require('node-cron');
 
     // Test version, triggers every 5 seconds.
     // cron.schedule('*/5 * * * * *', () => {
