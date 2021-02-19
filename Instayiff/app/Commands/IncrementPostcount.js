@@ -13,7 +13,11 @@ class IncrementPostcount extends Command {
   }
 
   async incrementPosts(){
-    await Database.raw('update user_data set post_count = post_count + 3')
+    /*Could define an upper post limit here
+    *Assuming using a sql statement will be faster than pulling all user_data and iterating over each object to update the post_count
+    */
+    await Database.raw('update user_data set post_count = post_count + 3');
+    Database.close();
   }
 
   async handle (args, options) {
@@ -21,6 +25,7 @@ class IncrementPostcount extends Command {
     this.info('increment:postcount command start')
 
     var cron = require('node-cron');
+    //Will trigger at midnight
     cron.schedule('0 0 * * *', () => {
       this.incrementPosts();
       console.log('Increment interval triggered');
