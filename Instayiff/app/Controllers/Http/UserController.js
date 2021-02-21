@@ -1,7 +1,6 @@
 'use strict';
 
 const User = use('App/Models/User');
-const UserDatum = use('App/Models/UserDatum');
 const Config = use('Config');
 
 class UserController {

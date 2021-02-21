@@ -1,6 +1,5 @@
 'use strict'
 
-const User = require("../User");
 const UserDatum = require("../UserDatum");
 
 const UserDatumHook = exports = module.exports = {}
