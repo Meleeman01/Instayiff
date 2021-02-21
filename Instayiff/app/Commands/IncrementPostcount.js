@@ -23,10 +23,10 @@ class IncrementPostcount extends Command {
     this.info('increment:postcount command start')
 
     // Test version, triggers every 5 seconds.
-    cron.schedule('*/5 * * * * *', () => {
-      this.incrementPosts();
-      console.log('Increment interval triggered');
-    });
+    // cron.schedule('*/5 * * * * *', () => {
+    //   this.incrementPosts();
+    //   console.log('Increment interval triggered');
+    // });
 
     // Will trigger at midnight
     cron.schedule('0 0 * * *', () => {

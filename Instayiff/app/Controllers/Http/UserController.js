@@ -64,19 +64,12 @@ class UserController {
          * ref: http://adonisjs.com/docs/4.1/lucid#_create
          */
         const user = await User.create(data);
-        //Creates user_data, gives initial post count of 3
-        this.initPosts(user);
         // Authenticate the user
         await auth.login(user);
         //log them into the feed :D
         return response.redirect('/feed'); 
     }
     
-    async initPosts(user){
-        const userData = new UserDatum();
-        userData.posts_left = 3;
-        await user.data().save(userData);
-    }
 }
 
 module.exports = UserController;
