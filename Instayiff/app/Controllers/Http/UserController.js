@@ -63,13 +63,12 @@ class UserController {
          * ref: http://adonisjs.com/docs/4.1/lucid#_create
          */
         const user = await User.create(data);
-
         // Authenticate the user
         await auth.login(user);
         //log them into the feed :D
         return response.redirect('/feed'); 
     }
-
+    
 }
 
 module.exports = UserController;

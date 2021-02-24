@@ -19,6 +19,8 @@ class User extends Model {
                 userInstance.password = await Hash.make(userInstance.password);
             }
         });
+        //Creates userData with 3 posts on new user registry.
+        this.addHook('afterCreate', 'UserDatumHook.initPosts');
     }
 
     /**
