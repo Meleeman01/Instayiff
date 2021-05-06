@@ -11,7 +11,7 @@ class PicturesSchema extends Schema {
             table.integer('user_id').unsigned().references('id').inTable('users');
             table.string('link');
             table.timestamps();
-            table.timestamp('deleted_at');
+            table.boolean('is_deleted').defaultTo(0);
         });
     }
 

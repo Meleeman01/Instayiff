@@ -35,7 +35,7 @@ Route.group(()=>{ //these are all pages that have no static pages yet
 
 //for posts
 Route.group(()=>{
-    Route.post('/post','PostController.create');
+    Route.post('/post','PostController.create').validator('upload');
 });
 
 Route

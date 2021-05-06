@@ -6,6 +6,8 @@ const Tag = use('App/Models/Tag');
 const Picture = use('App/Models/Picture');
 const Helpers = use('Helpers');
 
+const { sanitizor } = use('Validator');
+
 class PostController {
     async create({auth, request, view, response}) {
         //validate our files here since validator won't work on multiple files on the routes.js
@@ -22,8 +24,7 @@ class PostController {
 
         
 
-        await pics.moveAll(Helpers.tmpPath('uploads'), (file) => {
-            //console.log(file);
+        await pics.moveAll(Helpers.publicPath('uploads'), (file) => {
             return {
                 name: `${new Date().getTime()}.${file.subtype}`
             };
@@ -40,17 +41,17 @@ class PostController {
             }
             else {
                 for (const pic of pics._files) {
-                console.log(pics._files.length);
+                    console.log(pics._files);
 
-                //location+filename for teh link part of Picture, and then the user id as well minimum
-                if (pic.type == 'image') {
-                    console.log('this is an image');
-                    //Picture.create()
+                    //location+filename for teh link part of Picture, and then the user id as well minimum
+                    if (pic.type == 'image') {
+                        console.log('this is an image');
+                        await this.createImage(user,pic,postData.tags);
+                    }
+                    else if (pic.type == 'video') {
+                        console.log('this is a video');
+                    }
                 }
-                else if (pic.type == 'video') {
-                    console.log('this is a video');
-                }
-            }
             
 
             }
@@ -78,6 +79,33 @@ class PostController {
     }
     async delete() {
         //delete a users' post. the user must be an admin, or a user who owns the post.
+    }
+
+    async createImage(user,pic,tags) {
+        await Picture.create({
+            user_id:user.id,
+            link:'/uploads/'+pic.fileName,
+        });
+
+        this.createTags(tags);
+    }
+    async createTags(tags) {
+        //parse user tag data. be careful.
+        sanitizor.stripTags(sanitizor.escape(tags));
+        
+        //first seperate the tags by " " mark. perhaps sanitizing would be better.
+        tags.split(" ");
+        //check to see if tag exists in db
+        for (const tag of tags) {
+            console.log(tag);
+            if (tag) {
+                
+            }
+            else
+        }
+    }
+    async createPost(postData) {
+
     }
 
 }

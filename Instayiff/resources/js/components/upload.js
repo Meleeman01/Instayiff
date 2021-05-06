@@ -159,7 +159,7 @@ function Upload(props) {
         let data = new FormData(e.target);
         let files = [...data];
 
-        console.log(files);
+        console.log(data);
         
         fetch('/post', {
             credentials: 'include',
