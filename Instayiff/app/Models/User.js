@@ -41,6 +41,38 @@ class User extends Model {
         return this.hasOne('App/Models/UserDatum');
     }
 
+    userRole() {
+        return this.hasOne('App/Models/RoleUser');
+    }
+    friends() {
+        return this.hasMany('App/Models/Friend');
+    }
+    closeFriends() {
+        return this.hasMany('App/Models/CloseFriend'); //unlike me lolol
+    }
+    followers() {
+        return this.hasMany('App/Models/Follower');
+    }
+    posts() {
+        return this.hasMany('App/Models/Post');
+    }
+    albums() {
+        return this.hasMany('App/Models/Album'); //content string is for json lmao
+    }
+    pictures() {
+        return this.hasMany('App/Models/Picture');
+    }
+    videos() {
+        return this.hasMany('App/Models/Video');
+    }
+    comments() {
+        return this.hasMany('App/Models/Comment');
+    }
+    replies() {
+        return this.hasMany('App/Models/Reply');
+    }
+    //this will be good for starters. we'll add more as we go along. but the bulk of the app is here.
+
 }
 
 module.exports = User;

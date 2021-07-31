@@ -9,7 +9,7 @@ this document will describe the specs for Instayiff</p>
 <p>create an instagram like site for furries, and incentivise commissoned artists to create furry images, possibly lewd for dogecoin.</p>
 
 
-there will need to be artist accounts which can be opened for a low fee of 10 dollars a year or 2000 dogecoin.  and user accounts that can be made for free but won't be able to post images unless they apply for an artist account and or have a fursuit, or search for an artist to make their furry. a user furry reporting system could be used on each image to show how furry an image is and if a user posts 5 non furry images in a row they are warned and i'll have to review it. a user that reports it can recieve a point for each accurate post that isn't remotely furry. 5 points will equal a 50 cent reward. a point is worth 10 cents. a system of rewards in dogecoin for users interacting with the site would be appropriate. following an artist account and logging in everday should give a user 1 point reward for using the site, which can be redeemd via dogecoin. non artist accounts are allowed 3 posts per diem with posts being able to rollover per week. (and 5 cents per additional post in dogecoin. doing this at scale would be interesting.) users would have to optionally register their dogecoin wallets. and this site should be ablet to handle most of the furry community but ultimately we'll see on launch. we should only let users know they have been awarded dogecoin once the transaction is confirmed in their wallet. artists can post as much as they want. each person has their public profile page that shows their fursona, or their real image if they choose to, plus their furry desires and a few little ice breaker questions to get to know them a bit plus their public wallet address to send money if they have it posted "will implement a wallet system in the future so users don't have to manually change the address". 
+there will need to be artist accounts which can be opened for a low fee of 10 dollars a year or 2000 dogecoin.  and user accounts that can be made for free but will be able to post 3 times per diem unless they apply for an artist account and or have a fursuit, or search for an artist to make their furry. a user furry reporting system could be used on each image to show how furry an image is and if a user posts 5 non furry images in a row they are warned and i'll have to review it. a user that reports it can recieve a point for each accurate post that isn't remotely furry. 5 points will equal a 50 cent reward. a point is worth 10 cents. a system of rewards in dogecoin for users interacting with the site would be appropriate. following an artist account and logging in everday should give a user 1 point reward for using the site, which can be redeemd via dogecoin. non artist accounts are allowed 3 posts per diem with posts being able to rollover per week. (and 5 cents per additional post in dogecoin. doing this at scale would be interesting.) users would have to optionally register their dogecoin wallets. and this site should be ablet to handle most of the furry community but ultimately we'll see on launch. we should only let users know they have been awarded dogecoin once the transaction is confirmed in their wallet. artists can post as much as they want. each person has their public profile page that shows their fursona, or their real image if they choose to, plus their furry desires and a few little ice breaker questions to get to know them a bit plus their public wallet address to send money if they have it posted "will implement a wallet system in the future so users don't have to manually change the address". 
 
 users and artists can have furry connections and can tailor them to close furs and associate furs. a recommender engine will find users and artists based on what a user has liked. all comments are welcome. for each user there will be a feed mixed with users they follow with some users that they don't. eventually this will be replaced by a recommender engine hopefully to drive up engagement.
 <p>-------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
@@ -68,31 +68,35 @@ tech choices, laravel-mix for simplicity in building, and cache busting. node.js
 <h2>Database Schema</h2>
 	
 	users
-		|_id,username, password, email, wallet_id
+		|_id,username, password, email, wallet_id //done
 	roles
-		|_id,admin, mod, premium, user, banned, suspended
+		|_id,admin, mod, premium, user, banned, suspended //done
 	role_user
-			|_id, user-id,role_id, created-at, updated-at
+			|_id, user-id,role_id, created-at, updated-at //done
 	user_data
-			|_id,user-id, bio, species, Age, fav-music, fav-quote, wallet_id, favorites,
-	contacts
-			|_id, user_id , friends , close_friends, followers
+			|_id,user-id, bio, species, Age, fav-music, fav-quote, wallet_id, favorites, //done
+	friends
+			|_id, user_id , friend_id 
+	close_friends
+				|_id, user_id, friend_id
+	followers
+			|_id, user_id, follower_id
 	posts
-		 |_id, tag_id, user_id, album_id, picture_id, video_id, caption, likes, paw-count, tipable, created-at, updated-at.
+		 |_id, tag_id, user_id, album_id, picture_id, video_id, caption, likes, paw-count, tipable, created-at, updated-at. //done
 	comments
-			|_id, tag_id, post_id, text, created-at, updated-at,deleted-at
+			|_id, tag_id, post_id, text, created-at, updated-at,deleted-at //done
 	replies
-		   |_id, post_id, user_id, replyingto, comment_id,created-at,updated-at, deleted-at	
+		   |_id, tag_id, post_id, user_id, replyingto, comment_id,created-at,updated-at, deleted-at	//done
 	albums
-		  |_id, content, user_id, link, created-at, updated-at, deleted-at
+		  |_id, content, user_id, link, created-at, updated-at, deleted-at //done 
 	pictures
-			|_id, album_id, user_id link, created-at, updated-at, deleted-at
+			|_id, album_id, user_id link, created-at, updated-at, deleted-at //done
 	videos
-		  |_id, link, user_id, created-at, updated-at, deleted-at
+		  |_id, link, user_id, created-at, updated-at, deleted-at //done
 	tags
-		|_id, tagname, created-at, updated-at, deleted-at
+		|_id, tagname, post_id, comment_id, reply_id, created-at, updated-at, deleted-at //done
 	filters
-		   |_id, filter-name.
+		   |_id, filter-name. //done
 
 
 <h2>models</h2>

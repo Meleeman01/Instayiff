@@ -10,7 +10,7 @@
 
 </head>
 <body class="splash-page">
-  <img src="/background1.jpg" style="position: fixed; z-index: -1;">
+  <img src="/background1.jpg" style="position: fixed; z-index: -1; max-width:unset;">
   <section style="margin-bottom:3em;" class=" flx(wrap) space-evenly is-full">
       <div class="is-half flx(wrap)"></div>
       <div class="is-half flx(wrap) center">
@@ -23,7 +23,7 @@
                 <h2 class="is-title font1">Login/Register</h2>
                 <h3 class="is-subtitle font5">Instagram for furries!</h3>
               </div>
-              <div class="flx(column) middle center">
+              <div class="flx(column) middle bottom">
                 <form id="login" class="flx(column) center middle " action="/signin" method="POST">
                   {{ csrfField() }}
 
@@ -39,7 +39,7 @@
                   <input id="submit" class="hidden" type="submit" name="">
                 </form>
                   
-                    <button id="toggle" class="btn is-secondary font5">I'm New</button>
+                    <button id="toggle" class="btn is-secondary font5 marginme">I'm New</button>
                     <button type="submit" class="btn is-primary font5">login</button>
 
                   <a href="/forgot">I forgot my password!</a>
@@ -47,15 +47,18 @@
                     @include('components.errorNotification')
 
                   @endif
+
                     @include('components.errorValidation')
                 </div>
               </div>
           </div>
               
       </div>
+      
+      
   </section>
-
-  @include('layouts.staticfooter')
+@include('layouts.staticfooter')
+  
   <script>
       let button = document.querySelector('#toggle');
       let form = document.querySelector('#login');
